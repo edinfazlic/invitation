@@ -1,0 +1,6 @@
+
+security:
+  jwt:
+    token:
+      secret-key: ${SECRET_KEY:wipjd03kmv[wh567gmcvf2p0fh<niyedjgvdckjhkkhVvj;'\986546&*6865&^}
+      token-duration-minutes: ${TOKEN_DURATION_MINUTES:600}
