@@ -32,7 +32,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     // CSRF not needed
     http.csrf().disable()
         // don't authenticate this particular request
-        .authorizeRequests().antMatchers("/authenticate").permitAll()
+        .authorizeRequests().antMatchers("/authenticate", "/invitation-response").permitAll()
         // all other requests need to be authenticated
         .anyRequest().authenticated()
         // exceptions handling
