@@ -1,4 +1,4 @@
-package com.invitations.core.model.dto;
+package com.invitations.core.model.dto.invitationtemplate;
 
 import lombok.Getter;
 import lombok.Setter;

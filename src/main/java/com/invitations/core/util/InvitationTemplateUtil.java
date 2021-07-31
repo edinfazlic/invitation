@@ -1,6 +1,6 @@
 package com.invitations.core.util;
 
-import com.invitations.core.model.dto.InvitationTemplateResponsePayload;
+import com.invitations.core.model.dto.invitationtemplate.InvitationTemplateResponsePayload;
 import com.invitations.core.model.entity.InvitationTemplate;
 
 public class InvitationTemplateUtil {

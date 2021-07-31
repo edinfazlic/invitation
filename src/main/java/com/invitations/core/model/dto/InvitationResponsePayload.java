@@ -1,21 +1,20 @@
 package com.invitations.core.model.dto;
 
+import com.invitations.core.model.constant.InvitationResponseStatus;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class InvitationResponsePayload {
 
-  private Long id;
-  private String uuid;
-  private String subject;
-  private String parameters;
-  private int peopleAmount;
-  private int childrenAmount;
-  private String note;
-
-  InvitationTemplateResponsePayload template;
-  InvitationResponseResponsePayload response;
+  private InvitationResponseStatus status;
+  private String comment;
 
 }

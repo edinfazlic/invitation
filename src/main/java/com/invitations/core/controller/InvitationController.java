@@ -3,7 +3,7 @@ package com.invitations.core.controller;
 import com.invitations.core.model.dto.InvitationDetailsPayload;
 import com.invitations.core.model.dto.InvitationListItemPayload;
 import com.invitations.core.model.dto.InvitationRequestPayload;
-import com.invitations.core.model.dto.InvitationResponsePayload;
+import com.invitations.core.model.dto.PublicInvitationDetailsPayload;
 import com.invitations.core.service.InvitationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -51,10 +51,10 @@ public class InvitationController {
   }
 
   @GetMapping("/public/{uuid}")
-  public ResponseEntity<InvitationResponsePayload> getInvitationByUuid(
+  public ResponseEntity<PublicInvitationDetailsPayload> getInvitationByUuid(
       @PathVariable("uuid") String invitationUuid
   ) {
-    InvitationResponsePayload result = invitationService.get(invitationUuid);
+    PublicInvitationDetailsPayload result = invitationService.get(invitationUuid);
 
     return ResponseEntity.ok(result);
   }

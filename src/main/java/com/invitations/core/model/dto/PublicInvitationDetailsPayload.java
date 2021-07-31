@@ -1,6 +1,5 @@
 package com.invitations.core.model.dto;
 
-import com.invitations.core.model.constant.InvitationResponseStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,9 +11,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class InvitationResponseResponsePayload {
+public class PublicInvitationDetailsPayload {
 
-  private InvitationResponseStatus status;
-  private String comment;
+  private Long id;
+  private String uuid;
+  private String subject;
+  private String parameters;
+
+  private String templateText;
+
+  private InvitationResponsePayload response;
 
 }

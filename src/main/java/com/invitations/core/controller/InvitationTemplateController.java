@@ -1,7 +1,7 @@
 package com.invitations.core.controller;
 
-import com.invitations.core.model.dto.InvitationTemplateRequestPayload;
-import com.invitations.core.model.dto.InvitationTemplateResponsePayload;
+import com.invitations.core.model.dto.invitationtemplate.InvitationTemplateRequestPayload;
+import com.invitations.core.model.dto.invitationtemplate.InvitationTemplateResponsePayload;
 import com.invitations.core.service.InvitationTemplateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

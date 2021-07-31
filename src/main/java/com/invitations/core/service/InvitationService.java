@@ -4,7 +4,7 @@ import com.invitations.core.model.constant.ChangeType;
 import com.invitations.core.model.dto.InvitationDetailsPayload;
 import com.invitations.core.model.dto.InvitationListItemPayload;
 import com.invitations.core.model.dto.InvitationRequestPayload;
-import com.invitations.core.model.dto.InvitationResponsePayload;
+import com.invitations.core.model.dto.PublicInvitationDetailsPayload;
 import com.invitations.core.model.entity.Invitation;
 import com.invitations.core.model.entity.InvitationChange;
 import com.invitations.core.model.entity.InvitationChangeItem;
@@ -119,8 +119,28 @@ public class InvitationService {
     return payload;
   }
 
-  public InvitationResponsePayload get(String invitationUuid) {
-    return null;
+  public PublicInvitationDetailsPayload get(String invitationUuid) {
+    Invitation invitation = invitationRepository.findByUuid(invitationUuid);
+    if (invitation == null) {
+      return null;
+    }
+    return toPublicInvitationPayload(invitation);
+  }
+
+  private PublicInvitationDetailsPayload toPublicInvitationPayload(Invitation entity) {
+    PublicInvitationDetailsPayload payload = PublicInvitationDetailsPayload.builder()
+        .id(entity.getId())
+        .uuid(entity.getUuid())
+        .subject(entity.getSubject())
+        .parameters(entity.getParameters())
+        .templateText(entity.getInvitationTemplate().getText())
+        .build();
+
+    if (entity.getInvitationResponse() != null) {
+      payload.setResponse(InvitationResponseUtil.toResponsePayload(entity.getInvitationResponse()));
+    }
+
+    return payload;
   }
 
   public void update(Long id, InvitationRequestPayload payload) {

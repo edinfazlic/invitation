@@ -1,7 +1,7 @@
 package com.invitations.core.service;
 
-import com.invitations.core.model.dto.InvitationTemplateRequestPayload;
-import com.invitations.core.model.dto.InvitationTemplateResponsePayload;
+import com.invitations.core.model.dto.invitationtemplate.InvitationTemplateRequestPayload;
+import com.invitations.core.model.dto.invitationtemplate.InvitationTemplateResponsePayload;
 import com.invitations.core.model.entity.InvitationTemplate;
 import com.invitations.core.repository.InvitationTemplateRepository;
 import lombok.RequiredArgsConstructor;

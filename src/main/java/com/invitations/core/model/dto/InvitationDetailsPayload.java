@@ -1,5 +1,6 @@
 package com.invitations.core.model.dto;
 
+import com.invitations.core.model.dto.invitationtemplate.InvitationTemplateResponsePayload;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,7 +25,7 @@ public class InvitationDetailsPayload {
   private String note;
 
   private InvitationTemplateResponsePayload template;
-  private InvitationResponseResponsePayload response;
+  private InvitationResponsePayload response;
   private List<InvitationLogItemPayload> logs;
 
 }

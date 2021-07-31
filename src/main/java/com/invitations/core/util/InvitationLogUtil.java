@@ -40,7 +40,7 @@ public class InvitationLogUtil {
       logs.addAll(responseChanges);
     }
 
-    Collections.sort(logs);
+    logs.sort(Collections.reverseOrder());
     return logs;
   }
 

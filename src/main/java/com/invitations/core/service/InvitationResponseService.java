@@ -1,7 +1,7 @@
 package com.invitations.core.service;
 
 import com.invitations.core.model.constant.ChangeType;
-import com.invitations.core.model.dto.InvitationResponseRequestPayload;
+import com.invitations.core.model.dto.InvitationResponsePayload;
 import com.invitations.core.model.entity.Invitation;
 import com.invitations.core.model.entity.InvitationResponse;
 import com.invitations.core.model.entity.InvitationResponseChange;
@@ -24,11 +24,10 @@ public class InvitationResponseService {
   private final InvitationResponseChangeRepository invitationResponseChangeRepository;
   private final InvitationResponseChangeItemRepository invitationResponseChangeItemRepository;
 
-  public void saveOrUpdate(InvitationResponseRequestPayload payload) {
-    InvitationResponse invitationResponse = fromPayload(payload);
+  public void saveOrUpdate(Long invitationId, InvitationResponsePayload payload) {
+    InvitationResponse invitationResponse = fromPayload(invitationId, payload);
 
-    InvitationResponse current =
-        invitationResponseRepository.findByInvitationId(payload.getInvitationId());
+    InvitationResponse current = invitationResponseRepository.findByInvitationId(invitationId);
     if (current != null) {
       updateInvitationResponse(current, invitationResponse);
     } else {
@@ -36,14 +35,15 @@ public class InvitationResponseService {
     }
   }
 
-  private InvitationResponse fromPayload(InvitationResponseRequestPayload payload) {
+  private InvitationResponse fromPayload(Long invitationId,
+                                         InvitationResponsePayload payload) {
     InvitationResponse entity = InvitationResponse.builder()
         .status(payload.getStatus())
         .comment(payload.getComment())
         .build();
 
     Invitation invitation = new Invitation();
-    invitation.setId(payload.getInvitationId());
+    invitation.setId(invitationId);
     entity.setInvitation(invitation);
 
     return entity;

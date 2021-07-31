@@ -31,8 +31,10 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     // CSRF not needed
     http.csrf().disable()
+        // enabled cors
+        .cors().and()
         // don't authenticate this particular request
-        .authorizeRequests().antMatchers("/authenticate", "/invitation-response").permitAll()
+        .authorizeRequests().antMatchers("/authenticate", "/invitation/public/**").permitAll()
         // all other requests need to be authenticated
         .anyRequest().authenticated()
         // exceptions handling
