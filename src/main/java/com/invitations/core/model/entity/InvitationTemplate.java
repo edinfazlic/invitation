@@ -24,7 +24,7 @@ public class InvitationTemplate extends EntityWithLongId {
   @Column(name = "name")
   private String name;
 
-  @Column(name = "text")
+  @Column(name = "text", length = 1500)
   private String text;
 
 }
