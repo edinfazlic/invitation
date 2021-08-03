@@ -17,6 +17,7 @@ public class PublicInvitationDetailsPayload {
   private String uuid;
   private String subject;
   private String parameters;
+  private boolean plural;
 
   private String templateText;
 

@@ -133,6 +133,7 @@ public class InvitationService {
         .uuid(entity.getUuid())
         .subject(entity.getSubject())
         .parameters(entity.getParameters())
+        .plural(entity.getPeopleAmount() + entity.getChildrenAmount() > 1)
         .templateText(entity.getInvitationTemplate().getText())
         .build();
 
