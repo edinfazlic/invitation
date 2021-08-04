@@ -52,6 +52,9 @@ public class Invitation extends EntityWithLongId {
   @Column(name = "note")
   private String note;
 
+  @Column(name = "deleted")
+  private Boolean deleted;
+
   @OneToOne(fetch = FetchType.LAZY, mappedBy = "invitation")
   private InvitationResponse invitationResponse;
 

@@ -64,7 +64,7 @@ public class InvitationService {
   }
 
   public List<InvitationListItemPayload> getList() {
-    return invitationRepository.findAll().stream()
+    return invitationRepository.findAllByDeletedIsNull().stream()
         .map(this::toListPayload)
         .collect(Collectors.toList());
   }
@@ -120,7 +120,7 @@ public class InvitationService {
   }
 
   public PublicInvitationDetailsPayload get(String invitationUuid) {
-    Invitation invitation = invitationRepository.findByUuid(invitationUuid);
+    Invitation invitation = invitationRepository.findByUuidAndDeletedIsNull(invitationUuid);
     if (invitation == null) {
       return null;
     }
@@ -173,7 +173,20 @@ public class InvitationService {
   }
 
   public void delete(Long id) {
-    invitationRepository.deleteById(id);
+    Invitation invitation = getEntity(id);
+    invitation.setDeleted(true);
+
+    invitation = invitationRepository.save(invitation);
+
+    saveInvitationDeletionInformation(invitation);
+  }
+
+  private void saveInvitationDeletionInformation(Invitation invitation) {
+    InvitationChange invitationChange = InvitationChange.builder()
+        .invitation(invitation)
+        .changeType(ChangeType.DELETED)
+        .build();
+    invitationChangeRepository.save(invitationChange);
   }
 
 }
