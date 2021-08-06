@@ -64,7 +64,7 @@ public class InvitationService {
   }
 
   public List<InvitationListItemPayload> getList() {
-    return invitationRepository.findAllByDeletedIsNull().stream()
+    return invitationRepository.findAllByDeletedIsNullOrderById().stream()
         .map(this::toListPayload)
         .collect(Collectors.toList());
   }

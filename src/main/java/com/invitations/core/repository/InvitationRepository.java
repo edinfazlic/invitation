@@ -9,5 +9,5 @@ public interface InvitationRepository extends JpaRepository<Invitation, Long> {
 
   Invitation findByUuidAndDeletedIsNull(String uuid);
 
-  List<Invitation> findAllByDeletedIsNull();
+  List<Invitation> findAllByDeletedIsNullOrderById();
 }

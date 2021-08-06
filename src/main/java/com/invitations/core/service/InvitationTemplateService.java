@@ -22,7 +22,7 @@ public class InvitationTemplateService {
   }
 
   public List<InvitationTemplateResponsePayload> getList() {
-    return invitationTemplateRepository.findAll().stream()
+    return invitationTemplateRepository.findAllByOrderByName().stream()
         .map(this::toPayload)
         .collect(Collectors.toList());
   }
