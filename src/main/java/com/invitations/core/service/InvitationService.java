@@ -9,15 +9,18 @@ import com.invitations.core.model.entity.Invitation;
 import com.invitations.core.model.entity.InvitationChange;
 import com.invitations.core.model.entity.InvitationChangeItem;
 import com.invitations.core.model.entity.InvitationTemplate;
+import com.invitations.core.model.entity.InvitationVisit;
 import com.invitations.core.repository.InvitationChangeItemRepository;
 import com.invitations.core.repository.InvitationChangeRepository;
 import com.invitations.core.repository.InvitationRepository;
+import com.invitations.core.repository.InvitationVisitRepository;
 import com.invitations.core.util.InvitationResponseUtil;
 import com.invitations.core.util.InvitationTemplateUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,6 +35,7 @@ public class InvitationService {
   private final InvitationRepository invitationRepository;
   private final InvitationChangeRepository invitationChangeRepository;
   private final InvitationChangeItemRepository invitationChangeItemRepository;
+  private final InvitationVisitRepository invitationVisitRepository;
 
   public void save(InvitationRequestPayload payload) {
     Invitation invitation = invitationRepository.save(fromPayload(payload));
@@ -124,6 +128,12 @@ public class InvitationService {
     if (invitation == null) {
       return null;
     }
+
+    invitationVisitRepository.save(InvitationVisit.builder()
+        .date(new Date())
+        .invitation(invitation)
+        .build());
+
     return toPublicInvitationPayload(invitation);
   }
 
